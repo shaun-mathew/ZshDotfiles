@@ -1,0 +1,6 @@
+export EDITOR=nvim
+export NNN_FIFO='/tmp/nnn.fifo'
+export NNN_PLUG='f:fzcd;o:fzopen;p:preview-tui;s:suedit;j:autojump;d:dragdrop'
+export NNN_TRASH=1
+export NNN_BMS="j:$HOME/Downloads;c:$HOME/.config;d:$HOME/Documents"
+#export NNN_SSHFS='sshfs -o reconnect,idmap=user,cache_timeout=3600'
