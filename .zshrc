@@ -21,11 +21,12 @@ zle_highlight=('paste:none')
 unsetopt BEEP
 
 # completions
-autoload -Uz compinit
-zstyle ':completion:*' menu select
- zstyle ':completion::complete:lsof:*' menu yes select
-zmodload zsh/complist
-compinit
+#autoload -Uz compinit
+#autoload -Uz compinit && compinit -u
+#zstyle ':completion:*' menu select
+#zstyle ':completion::complete:lsof:*' menu yes select
+#zmodload zsh/complist
+#compinit
 comp_options+=(globdots)		# Include hidden files.
 #
 autoload -U up-line-or-beginning-search
@@ -51,13 +52,17 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 zsh_add_plugin "Aloxaf/fzf-tab"
 #zsh_add_plugin "marlonrichert/zsh-autocomplete"
-#zsh_add_completion "esc/conda-zsh-completion" false
+#zsh_add_completion "zsh-users/zsh-completions" false
 
-compdef _precommand devour
 
 [ -f $ZDOTDIR/completion/_fnm ] && fpath+="$ZDOTDIR/completion/"
 
-#compinit
+autoload -Uz compinit && compinit -u
+
+compdef _precommand devour
+
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
 #change background colour for newly opened terminals
 #(cat ~/.cache/wal/sequences &)
@@ -67,17 +72,15 @@ zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
 zstyle ':completion:*:descriptions' format '[%d]'
 # set list-colors to enable filename colorizing
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always --icons $realpath'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
 alias sudo='sudo -v; sudo '
 # Edit line in vim with ctrl-e:
 
-source /usr/share/fzf/key-bindings.zsh
-#source /usr/share/fzf/completion.zsh
 autoload edit-command-line; zle -N edit-command-line
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"

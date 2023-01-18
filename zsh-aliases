@@ -2,7 +2,7 @@
 alias j='z'
 alias ji='zi'
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
-alias ll='exa'
+alias ll='exa --icons'
 alias d='devour'
 alias rm='echo "This is not the command you are looking for."; false'
 alias neofetch="neofetch --ascii ~/.config/neofetch/ascii/kitty --ascii_colors 2"
