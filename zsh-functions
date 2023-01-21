@@ -74,3 +74,16 @@ function ranger {
     fi
     command rm -f -- "$tempfile" 2>/dev/null
 }
+
+
+
+
+function vifm()
+{
+    local dst="$(command vifm --choose-dir - "$@")"
+    if [ -z "$dst" ]; then
+        echo 'Directory picking cancelled/failed'
+        return 1
+    fi
+    cd "$dst"
+}
